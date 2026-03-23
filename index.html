@@ -1,43 +1,316 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta
-			name="viewport"
-			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-		/>
+<head>
+  <meta charset="utf-8">
+  <title>Building Production-Ready Applications</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<title>reveal.js</title>
+  <!-- Reveal.js core -->
+  <link rel="stylesheet" href="dist/reset.css">
+  <link rel="stylesheet" href="dist/reveal.css">
+  <link rel="stylesheet" href="dist/theme/black.css">
 
-		<link rel="stylesheet" href="dist/reset.css" />
-		<link rel="stylesheet" href="dist/reveal.css" />
-		<link rel="stylesheet" href="dist/theme/black.css" />
+  <!-- Code highlight -->
+  <link rel="stylesheet" href="dist/plugin/highlight/monokai.css">
 
-		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="dist/plugin/highlight/monokai.css" />
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
-			</div>
-		</div>
+  <!-- Tailwind (fine for slides) -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-		<script src="dist/reveal.js"></script>
-		<script src="dist/plugin/notes.js"></script>
-		<script src="dist/plugin/markdown.js"></script>
-		<script src="dist/plugin/highlight.js"></script>
-		<script>
-			// More info about initialization & config:
-			// - https://revealjs.com/initialization/
-			// - https://revealjs.com/config/
-			Reveal.initialize({
-				hash: true,
+  <style>
+    .reveal section {
+      padding: 60px 100px;
+    }
 
-				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
-			});
-		</script>
-	</body>
+    .bg-card {
+      background: rgba(255,255,255,0.05);
+      padding: 30px;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+    }
+
+    .reveal .slides section {
+      transition: transform 0.8s ease, opacity 0.8s ease;
+    }
+
+    .reveal .slides section.present {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    .reveal .slides section.past,
+    .reveal .slides section.future {
+      transform: scale(0.96);
+      opacity: 0.5;
+    }
+
+    pre code {
+      font-size: 0.9em !important;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="reveal">
+<div class="slides">
+
+<!-- SLIDE 1 -->
+<section data-background-gradient="linear-gradient(to right, #020617, #0f172a)">
+  <h1 class="text-6xl font-black text-white">
+    Building Production-Ready Applications
+  </h1>
+
+  <p class="mt-10 text-2xl text-gray-300">
+    What Separates Projects from Real Products
+  </p>
+
+  <p class="mt-16 text-xl text-gray-400">
+    Adesemowo Emmanuel • KD Session
+  </p>
+
+  <p class="mt-20 text-2xl text-cyan-400 italic">
+    From “it works locally” → to “it survives real users” 🚀
+  </p>
+</section>
+
+<!-- SLIDE 2 -->
+<section data-background-gradient="linear-gradient(to right, #111827, #1f2937)">
+  <h2 class="text-5xl text-red-400 font-bold mb-12">
+    The Reality Check
+  </h2>
+
+  <ul class="text-2xl space-y-6 text-gray-200">
+    <li class="fragment">You built a project… it works perfectly</li>
+    <li class="fragment">You deploy it… users start coming</li>
+    <li class="fragment text-red-300">App crashes 💥</li>
+    <li class="fragment text-red-300">Slow performance 🐢</li>
+    <li class="fragment text-red-300">Unexpected bugs 😵</li>
+    <li class="fragment text-red-300">Security issues 🔓</li>
+  </ul>
+
+  <p class="mt-16 text-3xl text-cyan-300 text-center font-bold fragment">
+    That’s the difference between a project and a product.
+  </p>
+</section>
+
+<!-- SLIDE 3 -->
+<section data-background-gradient="linear-gradient(to right, #0f172a, #1e293b)">
+  <h2 class="text-5xl font-bold text-blue-400 mb-12">
+    Project vs Product
+  </h2>
+
+  <div class="grid grid-cols-2 gap-10 text-xl">
+
+    <div class="bg-card">
+      <h3 class="text-3xl text-red-400 mb-6">Project</h3>
+      <ul class="space-y-4 text-gray-200">
+        <li>Works locally</li>
+        <li>No real users</li>
+        <li>Minimal error handling</li>
+        <li>No scalability concerns</li>
+        <li>Short-term focus</li>
+      </ul>
+    </div>
+
+    <div class="bg-card">
+      <h3 class="text-3xl text-green-400 mb-6">Product</h3>
+      <ul class="space-y-4 text-gray-200">
+        <li>Runs in production</li>
+        <li>Real users depend on it</li>
+        <li>Handles failure gracefully</li>
+        <li>Scales with growth</li>
+        <li>Long-term maintenance</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- SLIDE 4 -->
+<section data-background-gradient="linear-gradient(to right, #020617, #0f172a)">
+  <h2 class="text-5xl font-bold text-blue-400 mb-12">
+    What Does “Production-Ready” Mean?
+  </h2>
+
+  <ul class="text-2xl space-y-6 text-gray-200">
+    <li class="fragment">Reliable — doesn’t crash</li>
+    <li class="fragment">Scalable — handles growth</li>
+    <li class="fragment">Maintainable — easy to update</li>
+    <li class="fragment">Secure — protects users</li>
+    <li class="fragment">Observable — you can monitor it</li>
+  </ul>
+
+  <p class="mt-16 text-2xl text-cyan-300 text-center font-bold fragment">
+    Production-ready = predictable under pressure
+  </p>
+</section>
+
+<!-- SLIDE 5 -->
+<section data-background-gradient="linear-gradient(to right, #111827, #000000)">
+  <h2 class="text-5xl font-bold text-blue-400 mb-12">
+    Core Pillars
+  </h2>
+
+  <ul class="text-2xl space-y-6 text-gray-200">
+    <li class="fragment">Code Quality</li>
+    <li class="fragment">Error Handling</li>
+    <li class="fragment">Performance</li>
+    <li class="fragment">Security</li>
+    <li class="fragment">Deployment & DevOps</li>
+    <li class="fragment">Monitoring & Logging</li>
+  </ul>
+</section>
+
+<!-- SLIDE 6 -->
+<section>
+  <section data-background-gradient="linear-gradient(to right, #7f1d1d, #991b1b)">
+    <h2 class="text-5xl font-bold text-white mb-12">
+      Project-Level Code
+    </h2>
+
+    <div class="bg-card max-w-4xl mx-auto">
+      <pre><code class="hljs">
+app.get("/users", async (req, res) => {
+  const users = await db.getUsers();
+  res.json(users);
+});
+      </code></pre>
+    </div>
+  </section>
+
+  <section data-background-gradient="linear-gradient(to right, #064e3b, #065f46)">
+    <h2 class="text-5xl font-bold text-green-400 mb-12">
+      Production-Ready Code
+    </h2>
+
+    <div class="bg-card max-w-4xl mx-auto">
+      <pre><code class="hljs">
+app.get("/users", async (req, res) => {
+  try {
+    const users = await db.getUsers();
+
+    if (!users) {
+      return res.status(404).json({ message: "No users found" });
+    }
+
+    res.json(users);
+  } catch (error) {
+    console.error("Error fetching users:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+      </code></pre>
+    </div>
+  </section>
+</section>
+
+<!-- SLIDE 7 -->
+<section data-background-gradient="linear-gradient(to right, #450a0a, #7f1d1d)">
+  <h2 class="text-5xl text-white font-bold mb-12">
+    What Breaks in Production?
+  </h2>
+
+  <ul class="text-2xl space-y-6 text-gray-200">
+    <li class="fragment">“Works on my machine”</li>
+    <li class="fragment">No validation</li>
+    <li class="fragment">No logging</li>
+    <li class="fragment">Poor DB design</li>
+    <li class="fragment">Hardcoded configs</li>
+  </ul>
+</section>
+
+<!-- SLIDE 8 -->
+<section data-background-gradient="linear-gradient(to right, #022c22, #064e3b)">
+  <h2 class="text-5xl font-bold text-emerald-400 mb-12">
+    Tools That Help
+  </h2>
+
+  <ul class="text-2xl space-y-6 text-gray-200">
+    <li>Logging → Winston / Pino</li>
+    <li>Monitoring → Sentry</li>
+    <li>CI/CD → GitHub Actions</li>
+    <li>Testing → Jest</li>
+    <li>Docker → Consistency</li>
+  </ul>
+</section>
+
+<!-- SLIDE 9 -->
+<section data-background-gradient="linear-gradient(to right, #020617, #0f172a)">
+  <h2 class="text-5xl font-bold text-blue-400 mb-12">
+    Mindset Shift
+  </h2>
+
+  <ul class="text-3xl space-y-8 text-gray-200">
+    <li class="fragment">Junior: “Does it work?”</li>
+    <li class="fragment">Mid: “Is it clean?”</li>
+    <li class="fragment text-cyan-300 font-bold">Senior: “What happens when it breaks?”</li>
+  </ul>
+</section>
+
+<!-- SLIDE 10 -->
+<section data-background-gradient="linear-gradient(to right, #0f172a, #1e293b)">
+  <h2 class="text-5xl font-bold text-blue-400 mb-12">
+    Start Today
+  </h2>
+
+  <ol class="text-2xl space-y-6 text-gray-200 list-decimal pl-10">
+    <li>Add error handling</li>
+    <li>Validate inputs</li>
+    <li>Use env variables</li>
+    <li>Add logging</li>
+    <li>Write tests</li>
+    <li>Deploy your apps</li>
+  </ol>
+</section>
+
+<!-- SLIDE 11 -->
+<section data-background-gradient="linear-gradient(to right, #000000, #020617)">
+  <h1 class="text-5xl text-white text-center">
+    Anyone can build a project.
+  </h1>
+
+  <h2 class="mt-10 text-4xl text-cyan-400 text-center">
+    Engineers build systems that survive users.
+  </h2>
+</section>
+
+<!-- SLIDE 12 -->
+<section>
+  <h1 class="text-6xl text-white">Questions?</h1>
+</section>
+
+<!-- SLIDE 13 -->
+<section>
+  <h1 class="text-6xl text-white mb-10">Thank You</h1>
+
+  <p class="text-gray-400">Adesemowo Emmanuel</p>
+  <p class="mt-4 text-gray-400">emm.bolu@gmail.com</p>
+</section>
+
+</div>
+</div>
+
+<!-- JS -->
+<script src="dist/reveal.js"></script>
+<script src="dist/plugin/notes.js"></script>
+<script src="dist/plugin/highlight.js"></script>
+
+<script>
+Reveal.initialize({
+  hash: true,
+  transition: 'slide',
+  transitionSpeed: 'slow',
+  backgroundTransition: 'fade',
+  controls: true,
+  progress: true,
+  center: true,
+  width: 1280,
+  height: 720,
+  slideNumber: true,
+  autoAnimate: true,
+  plugins: [ RevealHighlight, RevealNotes ]
+});
+</script>
+
+</body>
 </html>
